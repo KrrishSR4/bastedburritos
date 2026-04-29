@@ -1,7 +1,20 @@
+import heroImg from "@/assets/hero-burrito.jpg";
+
 export const Hero = () => {
   return (
-    <section id="home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '96px', backgroundColor: '#0f0a08', color: '#ffffff' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', width: '100%' }}>
+    <section id="home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '96px', position: 'relative', backgroundColor: '#0f0a08', color: '#ffffff', overflow: 'hidden' }}>
+      {/* Background image */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <img
+          src={heroImg}
+          alt="Sizzling burrito"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0f0a08, #0f0a08 70%, rgba(15, 10, 8, 0.6) 40%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f0a08, transparent, rgba(15, 10, 8, 0.6))' }} />
+      </div>
+
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', width: '100%', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderRadius: '9999px', padding: '0.375rem 1rem', marginBottom: '1.5rem', background: 'linear-gradient(to right, #ff6b35, #dc2626)' }}>
           <span style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: '#84cc16' }} />
           <span style={{ fontSize: '0.875rem', letterSpacing: '0.1em', color: '#ffffff', fontWeight: 'bold' }}>⭐ 5.0 RATED · RAIPUR</span>
