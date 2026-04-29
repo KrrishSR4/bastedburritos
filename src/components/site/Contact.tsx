@@ -47,7 +47,7 @@ export const Contact = () => {
           <div className="lg:col-span-3 rounded-3xl overflow-hidden bg-card border border-border min-h-[400px]">
             <iframe
               title="Basted Burritos location"
-              src="https://www.google.com/maps?q=Kamal+Vihar+Rd,+Civil+Lines,+Raipur&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.123456789!2d81.6604552!3d21.2372646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dd3d15468f93:0x75870a6ded4cf962!2sBasted+burritos!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
               className="w-full h-full min-h-[400px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
