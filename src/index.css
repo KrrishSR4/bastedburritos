@@ -114,3 +114,24 @@
 .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 .animate-marquee { animation: marquee 30s linear infinite; }
+
+/* Shimmer for skeletons */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, hsl(20 10% 12%) 0%, hsl(20 10% 18%) 50%, hsl(20 10% 12%) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Mobile perf: reduce backdrop blur cost */
+@media (max-width: 768px) {
+  .glass { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .animate-marquee { animation-duration: 22s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow, .animate-pulse-glow, .animate-marquee, .shimmer { animation: none !important; }
+}
