@@ -41,10 +41,10 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.95] tracking-tight"
+            className="font-display text-[2.75rem] sm:text-6xl lg:text-8xl leading-[0.95] tracking-tight"
           >
-            Taste the Real <br />
-            <span className="text-gradient-fire">Mexican Flavor</span>
+            Best Burritos in <br />
+            <span className="text-gradient-fire">Raipur</span>
             <span className="inline-block ml-2 animate-float-slow">🌯</span>
             <span className="inline-block ml-1 animate-float-slow" style={{ animationDelay: "1s" }}>🔥</span>
           </motion.h1>
@@ -55,7 +55,7 @@ export const Hero = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-xl"
           >
-            Hand-rolled burritos, sizzling tacos & street-style combos — basted with love, served with fire. Welcome to <span className="text-foreground font-semibold">Basted Burritos</span>.
+            Fresh • Fast • Authentic Mexican Taste — hand-rolled, fire-basted, and served with soul at <span className="text-foreground font-semibold">Basted Burritos</span>.
           </motion.p>
 
           <motion.div
