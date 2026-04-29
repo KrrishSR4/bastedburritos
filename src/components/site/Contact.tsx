@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock } from "lucide-react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
 
-export const Contact = () => (
+export const Contact = () => {
+  const lite = useLiteMotion();
+  return (
   <section id="contact" className="py-24 sm:py-32 relative">
     <div className="mx-auto max-w-7xl px-6">
       <div className="text-center mb-14">
@@ -11,10 +14,10 @@ export const Contact = () => (
 
       <div className="grid lg:grid-cols-5 gap-6">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={lite ? false : { opacity: 0, x: -30 }}
+          whileInView={lite ? undefined : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="lg:col-span-2 glass rounded-3xl p-8 flex flex-col gap-6"
         >
           <div className="flex gap-4">
@@ -51,10 +54,10 @@ export const Contact = () => (
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={lite ? false : { opacity: 0, x: 30 }}
+          whileInView={lite ? undefined : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="lg:col-span-3 rounded-3xl overflow-hidden glass min-h-[400px]"
         >
           <iframe
@@ -68,4 +71,5 @@ export const Contact = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

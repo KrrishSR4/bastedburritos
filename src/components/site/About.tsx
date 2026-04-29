@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
 import { UtensilsCrossed, Car, Bike } from "lucide-react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
+import { motion } from "framer-motion";
 
 const features = [
   { icon: UtensilsCrossed, title: "Dine In", desc: "Cozy Mexican vibes, sizzling plates served fresh at your table." },
@@ -8,15 +9,16 @@ const features = [
 ];
 
 export const About = () => {
+  const lite = useLiteMotion();
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={lite ? false : { opacity: 0, x: -30 }}
+            whileInView={lite ? undefined : { opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="font-condensed text-flame tracking-widest mb-3">— OUR STORY</div>
             <h2 className="font-display text-4xl sm:text-6xl leading-[1] mb-6">
@@ -34,12 +36,11 @@ export const About = () => {
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={lite ? false : { opacity: 0, y: 20 }}
+                whileInView={lite ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
-                whileHover={{ x: 8 }}
-                className="glass rounded-2xl p-6 flex gap-5 items-start group cursor-default"
+                transition={{ delay: lite ? 0 : i * 0.1, duration: 0.45 }}
+                className="glass rounded-2xl p-6 flex gap-5 items-start group cursor-default hover:translate-x-1 transition-transform"
               >
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-flame to-chili flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform">
                   <f.icon className="w-7 h-7 text-primary-foreground" />
