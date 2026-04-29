@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
-import { useLiteMotion } from "@/hooks/use-lite-motion";
 import burritoImg from "@/assets/menu-burrito.jpg";
 import tacosImg from "@/assets/menu-tacos.jpg";
 import comboImg from "@/assets/menu-combo.jpg";
@@ -34,13 +32,12 @@ const categories = Object.keys(data);
 
 export const Menu = () => {
   const [active, setActive] = useState(categories[0]);
-  const lite = useLiteMotion();
   return (
-    <section id="menu" className="py-24 sm:py-32 relative">
+    <section id="menu" className="py-24 sm:py-32 relative bg-background">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-14">
           <div className="font-condensed text-flame tracking-widest mb-3">— THE MENU</div>
-          <h2 className="font-display text-4xl sm:text-6xl">Pick your <span className="text-gradient-fire">poison.</span></h2>
+          <h2 className="font-display text-4xl sm:text-6xl text-foreground">Pick your <span className="text-gradient-fire">poison.</span></h2>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -48,43 +45,26 @@ export const Menu = () => {
             <button
               key={c}
               onClick={() => setActive(c)}
-              className={`relative font-condensed tracking-wider text-lg px-6 py-2.5 rounded-full transition-all ${
-                active === c ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground glass"
-              }`}
+              className={`font-condensed tracking-wider text-lg px-6 py-2.5 rounded-full transition-all ${active === c ? "text-primary-foreground bg-gradient-to-r from-flame to-chili" : "text-foreground/70 hover:text-foreground bg-card border border-border"
+                }`}
             >
-              {active === c && (
-                lite ? (
-                  <span className="absolute inset-0 bg-gradient-to-r from-flame to-chili rounded-full glow-primary" />
-                ) : (
-                  <motion.div layoutId="menupill"
-                    className="absolute inset-0 bg-gradient-to-r from-flame to-chili rounded-full glow-primary"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }} />
-                )
-              )}
-              <span className="relative">{c}</span>
+              {c}
             </button>
           ))}
         </div>
 
-        <motion.div
-          key={active}
-          initial={lite ? false : { opacity: 0, y: 12 }}
-          animate={lite ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {data[active].map((item) => (
-            <motion.div
+            <div
               key={item.name}
-              whileHover={lite ? undefined : { y: -6 }}
-              className="group glass rounded-3xl overflow-hidden hover:border-flame/40 transition-all"
+              className="bg-card rounded-3xl overflow-hidden border border-border"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img src={item.img} alt={item.name} loading="lazy" width={800} height={600}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                 {item.tag && (
-                  <div className="absolute top-3 left-3 glass rounded-full px-3 py-1 text-xs font-condensed tracking-wider">
+                  <div className="absolute top-3 left-3 bg-card rounded-full px-3 py-1 text-xs font-condensed tracking-wider border border-border">
                     {item.tag}
                   </div>
                 )}
@@ -93,16 +73,16 @@ export const Menu = () => {
                 </div>
               </div>
               <div className="p-5">
-                <h3 className="font-display text-xl mb-1">{item.name}</h3>
+                <h3 className="font-display text-xl mb-1 text-foreground">{item.name}</h3>
                 <p className="text-muted-foreground text-sm">{item.desc}</p>
                 <a href="https://wa.me/918359055505" target="_blank" rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 font-condensed text-flame group-hover:translate-x-1 transition-transform">
+                  className="mt-4 inline-flex items-center gap-1 font-condensed text-flame">
                   Order Now →
                 </a>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

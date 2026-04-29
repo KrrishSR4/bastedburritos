@@ -1,6 +1,4 @@
 import { UtensilsCrossed, Car, Bike } from "lucide-react";
-import { useLiteMotion } from "@/hooks/use-lite-motion";
-import { motion } from "framer-motion";
 
 const features = [
   { icon: UtensilsCrossed, title: "Dine In", desc: "Cozy Mexican vibes, sizzling plates served fresh at your table." },
@@ -9,19 +7,13 @@ const features = [
 ];
 
 export const About = () => {
-  const lite = useLiteMotion();
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-24 sm:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={lite ? false : { opacity: 0, x: -30 }}
-            whileInView={lite ? undefined : { opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <div className="font-condensed text-flame tracking-widest mb-3">— OUR STORY</div>
-            <h2 className="font-display text-4xl sm:text-6xl leading-[1] mb-6">
+            <h2 className="font-display text-4xl sm:text-6xl leading-[1] mb-6 text-foreground">
               Mexico in <br /><span className="text-gradient-fire">every bite.</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
@@ -30,26 +22,22 @@ export const About = () => {
             <p className="text-muted-foreground text-lg leading-relaxed">
               Every tortilla is hand-pressed. Every salsa, slow-simmered. Every burrito, basted to golden perfection. No shortcuts. Just real food, real fast.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-5">
             {features.map((f, i) => (
-              <motion.div
+              <div
                 key={f.title}
-                initial={lite ? false : { opacity: 0, y: 20 }}
-                whileInView={lite ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: lite ? 0 : i * 0.1, duration: 0.45 }}
-                className="glass rounded-2xl p-6 flex gap-5 items-start group cursor-default hover:translate-x-1 transition-transform"
+                className="bg-card rounded-2xl p-6 flex gap-5 items-start border border-border"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-flame to-chili flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-flame to-chili flex items-center justify-center shrink-0">
                   <f.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl mb-1">{f.title}</h3>
+                  <h3 className="font-display text-2xl mb-1 text-foreground">{f.title}</h3>
                   <p className="text-muted-foreground">{f.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
