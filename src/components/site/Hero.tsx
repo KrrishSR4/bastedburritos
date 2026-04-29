@@ -1,17 +1,42 @@
 import heroImg from "@/assets/hero-burrito.jpg";
+import { useEffect, useState } from "react";
 
 export const Hero = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '96px', position: 'relative', backgroundColor: '#0f0a08', color: '#ffffff', overflow: 'hidden' }}>
+    <section id="home" style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      paddingTop: '96px',
+      position: 'relative',
+      backgroundColor: '#0f0a08',
+      color: '#ffffff',
+      overflow: 'hidden'
+    }}>
       {/* Background image */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
         <img
           src={heroImg}
           alt="Sizzling burrito"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: mounted ? 0.5 : 0,
+            transition: 'opacity 0.5s ease'
+          }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0f0a08, #0f0a08 70%, rgba(15, 10, 8, 0.6) 40%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f0a08, transparent, rgba(15, 10, 8, 0.6))' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to bottom, rgba(15, 10, 8, 0.3) 0%, rgba(15, 10, 8, 0.6) 50%, #0f0a08 100%)' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to right, #0f0a08 0%, transparent 30%, transparent 70%, rgba(15, 10, 8, 0.8) 100%)' }} />
       </div>
 
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', width: '100%', position: 'relative', zIndex: 1 }}>
