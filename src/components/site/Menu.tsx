@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
 import burritoImg from "@/assets/menu-burrito.jpg";
 import tacosImg from "@/assets/menu-tacos.jpg";
 import comboImg from "@/assets/menu-combo.jpg";
@@ -33,6 +34,7 @@ const categories = Object.keys(data);
 
 export const Menu = () => {
   const [active, setActive] = useState(categories[0]);
+  const lite = useLiteMotion();
   return (
     <section id="menu" className="py-24 sm:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
@@ -51,9 +53,13 @@ export const Menu = () => {
               }`}
             >
               {active === c && (
-                <motion.div layoutId="menupill"
-                  className="absolute inset-0 bg-gradient-to-r from-flame to-chili rounded-full glow-primary"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+                lite ? (
+                  <span className="absolute inset-0 bg-gradient-to-r from-flame to-chili rounded-full glow-primary" />
+                ) : (
+                  <motion.div layoutId="menupill"
+                    className="absolute inset-0 bg-gradient-to-r from-flame to-chili rounded-full glow-primary"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+                )
               )}
               <span className="relative">{c}</span>
             </button>
@@ -62,15 +68,15 @@ export const Menu = () => {
 
         <motion.div
           key={active}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={lite ? false : { opacity: 0, y: 12 }}
+          animate={lite ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {data[active].map((item) => (
             <motion.div
               key={item.name}
-              whileHover={{ y: -8 }}
+              whileHover={lite ? undefined : { y: -6 }}
               className="group glass rounded-3xl overflow-hidden hover:border-flame/40 transition-all"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
