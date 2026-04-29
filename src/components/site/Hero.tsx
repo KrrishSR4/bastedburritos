@@ -8,22 +8,15 @@ export const Hero = () => {
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
         <img src={heroImg} alt="Sizzling burrito" width={1920} height={1080}
+          fetchPriority="high" decoding="async"
           className="w-full h-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/60" />
       </div>
 
       {/* Animated blobs */}
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ duration: 6, repeat: Infinity }}
-        className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-flame/30 blur-3xl -z-10"
-      />
-      <motion.div
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity }}
-        className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full bg-chili/30 blur-3xl -z-10"
-      />
+      <div className="hidden md:block absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-flame/30 blur-3xl -z-10 animate-float-slow" />
+      <div className="hidden md:block absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full bg-chili/30 blur-3xl -z-10 animate-float-slow" style={{ animationDelay: "2s" }} />
 
       <div className="mx-auto max-w-7xl px-6 w-full grid lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-7 z-10">
@@ -95,7 +88,7 @@ export const Hero = () => {
         >
           <div className="relative animate-float-slow">
             <div className="absolute inset-0 bg-gradient-to-br from-flame/40 to-chili/40 blur-3xl" />
-            <img src={heroImg} alt="Burrito" width={600} height={600}
+            <img src={heroImg} alt="Burrito" width={600} height={600} decoding="async"
               className="relative rounded-[2rem] object-cover aspect-square glow-primary" />
             <div className="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 font-condensed">
               <div className="text-2xl text-flame">🌶️ 100% Fresh</div>
