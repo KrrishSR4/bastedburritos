@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
 
 const reviews = [
   { name: "Aarav Sharma", text: "Best burritos in Raipur, hands down. The El Jefe is life-changing!", role: "Foodie" },
@@ -12,6 +13,7 @@ const reviews = [
 
 export const Reviews = () => {
   const [i, setI] = useState(0);
+  const lite = useLiteMotion();
   const next = () => setI((p) => (p + 1) % reviews.length);
   const prev = () => setI((p) => (p - 1 + reviews.length) % reviews.length);
 
@@ -33,9 +35,9 @@ export const Reviews = () => {
         <div className="relative">
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={lite ? { opacity: 0 } : { opacity: 0, x: 30 }}
+            animate={lite ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            transition={{ duration: lite ? 0.2 : 0.4 }}
             className="glass rounded-3xl p-8 sm:p-12 text-center"
           >
             <div className="flex justify-center gap-1 mb-5">

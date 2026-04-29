@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Leaf, Timer, Award, Heart } from "lucide-react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
 
 const points = [
   { icon: Leaf, title: "Fresh Ingredients", desc: "Sourced daily from local farms — never frozen." },
@@ -8,7 +9,9 @@ const points = [
   { icon: Heart, title: "Made with Love", desc: "Hand-rolled, basted, and packed by humans who care." },
 ];
 
-export const WhyUs = () => (
+export const WhyUs = () => {
+  const lite = useLiteMotion();
+  return (
   <section className="py-24 sm:py-32 relative">
     <div className="mx-auto max-w-7xl px-6">
       <div className="text-center mb-14">
@@ -19,12 +22,11 @@ export const WhyUs = () => (
         {points.map((p, i) => (
           <motion.div
             key={p.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={lite ? false : { opacity: 0, y: 30 }}
+            whileInView={lite ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            whileHover={{ y: -6 }}
-            className="glass rounded-2xl p-7 text-center group"
+            transition={{ delay: lite ? 0 : i * 0.08, duration: 0.45 }}
+            className="glass rounded-2xl p-7 text-center group hover:-translate-y-1.5 transition-transform"
           >
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-sun to-flame flex items-center justify-center mb-5 group-hover:rotate-12 group-hover:scale-110 transition-all">
               <p.icon className="w-8 h-8 text-primary-foreground" />
@@ -36,4 +38,5 @@ export const WhyUs = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

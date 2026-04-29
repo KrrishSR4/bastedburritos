@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { useLiteMotion } from "@/hooks/use-lite-motion";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -12,6 +13,7 @@ const images = [g1, g2, g3, g4, g5, g6];
 
 export const Gallery = () => {
   const [open, setOpen] = useState<string | null>(null);
+  const lite = useLiteMotion();
   return (
     <section id="gallery" className="py-24 sm:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
@@ -24,10 +26,10 @@ export const Gallery = () => {
           {images.map((src, i) => (
             <motion.button
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={lite ? false : { opacity: 0, scale: 0.95 }}
+              whileInView={lite ? undefined : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.07, duration: 0.5 }}
+              transition={{ delay: lite ? 0 : i * 0.05, duration: 0.4 }}
               onClick={() => setOpen(src)}
               className={`relative overflow-hidden rounded-2xl group ${i === 0 ? "row-span-2 col-span-2 md:col-span-1 md:row-span-2" : ""}`}
             >
